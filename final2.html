@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Mapping</title>
+    <style>
+        .user{
+            background-color: #ddd;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div id="Display"></div>
+    <script>
+        async function getData()
+        {
+            try {
+            fetch('https://reqres.in/api/users')
+            .then(response=>
+            {
+                console.log(response);
+                if(!response.ok)
+                {
+                    throw Error("ERROR");
+                }
+                return response.json();
+            })
+            .then(data=>{
+                console.log(data.data);
+                const html=data.data
+                .map(user=>
+                {
+                    return `
+                    <div class="user">
+                    <p> Id: ${user.id}</p>
+                    <p> Name: ${user.first_name}</p>
+                    <p> Email: ${user.email}</p>
+                    </div>
+                    `;
+                }).join("");
+                document.querySelector('#Display').
+                insertAdjacentHTML("afterbegin",html);
+            })}
+            catch(error)
+            {
+                console.log(error);
+            };
+        }
+        getData();
+    </script>
+</body>
+</html>

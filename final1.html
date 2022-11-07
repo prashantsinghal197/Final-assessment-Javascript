@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Area</title>
+</head>
+<body>
+    <script>
+    class shape{
+        constructor(height,width)
+     {
+            
+            this.height=height;
+            this.width=width;
+        }  
+        
+    }
+    shape.prototype.getShape = function getShape() {
+      return 'Shape';
+    };
+    console.log(shape.prototype.getShape());
+    
+    class rectangle extends shape
+    {
+      constructor(height,width){        
+        super(height,width);
+      }
+        
+        getArea()
+        {
+            return this.height*this.width;
+            
+        }
+        
+    }
+    let n= prompt("Enter Height");
+    let m= prompt("Enter Width");
+    n=Number(n);
+    m=Number(m);
+    let r = new rectangle(n, m);
+    
+    console.log(r.getArea());
+    </Script>
+</body>
+</html>
